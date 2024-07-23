@@ -23,7 +23,7 @@ Script {
             return;
         }
 
-        const options = ["Translate selection to English", "Summarize selected text to 3 sentences", "Fix typos in selection"];
+        const options = ["Rewrite as a wired article","Translate selection to English", "Summarize selected text to 3 sentences", "Fix typos in selection"];
         let dialogResult = script.inputDialogGetItem(
             "AI Text Tool", "Please select an action", options, 0, false);
         let aiPrompt = "";
@@ -31,12 +31,15 @@ Script {
         const text = script.noteTextEditSelectedText();
         switch (dialogResult) {
             case options[0]:
-                aiPrompt = "Translate the text to English";
+                aiPrompt = "Re-write the selected text in the style of an easy to read wired article. Retain all examples and any tools and services mentioned in detail. Use headers bullet points to keep things neat. Do not summarize.";
                 break;
             case options[1]:
-                aiPrompt = "Summarize text to 3 sentences";
+                aiPrompt = "Translate the text to English";
                 break;
             case options[2]:
+                aiPrompt = "Summarize text to 3 sentences";
+                break;
+            case options[3]:
                 aiPrompt = "Fix typos and correct grammatical errors, only return the corrected text";
                 break;
             default:
